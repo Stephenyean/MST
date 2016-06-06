@@ -17,6 +17,14 @@ public:
 	int status;
 };
 */
+class Node {
+public:
+	Node(int _w, int _e, float _weight) :w(_w), e(_e), weight(_weight) {}
+	int w;
+	int e;
+	float weight;
+	friend bool operator<(const Node&l, const Node&r);
+};
 class Graph {
 public:
 	Graph(vector<float>);
@@ -25,6 +33,7 @@ public:
 	float** E;
 	bool* status;
 	float computeMst();
+	float pqMst();
 	void printE();
 };
 
