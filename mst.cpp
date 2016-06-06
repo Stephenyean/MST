@@ -27,6 +27,38 @@ Graph::Graph(vector<float> pV)
 		}
 	//printE();
 }
+Graph::Graph(std::vector<float> pV,std::vector<std::pair<int,int> > edges)
+{
+//	cout<<pV.size()<<" "<<edges.size()<<endl;
+//	for(int i=0;i<edges.size();i++)
+//		cout<<edges[i].first<<" "<<edges[i].second<<endl;
+/*	for(int i=0;i<pV.size();i+=2)
+	{
+		cout<<i/2<<" "<<pV[i]<<" "<<pV[i+1]<<endl;
+	}
+*/	N = pV.size()/2;
+	E = new float*[N];
+	status = new bool[N];
+	for (int i = 0; i < N; i++) status[i] = false;
+	for (int i = 0; i < N; i++)
+		E[i] = new float[N];
+	for (int i = 0; i < N; i++)
+		for (int j = 0; j < N; j++)
+			E[i][j] = -1;
+	for(int iter=0;iter<edges.size();iter++)
+	{
+		int index1=edges[iter].first,index2=edges[iter].second;
+		//cout<<index1<<" "<<index2<<endl;
+		E[index2][index1]=E[index1][index2] = sqrt((pV[2 * index1] - pV[2 * index2])*(pV[2 * index1] - pV[2 * index2]) + (pV[2 * index1 + 1] - pV[2 * index2 + 1])*(pV[2 * index1 + 1] - pV[2 * index2 +1]));
+			
+	}
+/*	for(int i=0;i<N;i++)
+	{
+		for(int j=0;j<N;j++)
+			cout<<E[i][j]<<" ";
+		cout<<endl;
+	}*/
+}
 Graph::~Graph()
 {
 	for (int i = 0; i < N; i++)

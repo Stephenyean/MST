@@ -1,6 +1,7 @@
 #ifndef MST_H
 #define MST_H
 #include <vector>
+#include <algorithm>
 using namespace std;
 /*
 class Vertex {
@@ -28,6 +29,7 @@ public:
 class Graph {
 public:
 	Graph(vector<float>);
+	Graph(vector<float>,std::vector<std::pair<int,int> >);
 	~Graph();
 	int N;
 	float** E;
